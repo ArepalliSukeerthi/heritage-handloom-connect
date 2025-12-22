@@ -80,12 +80,12 @@ const Products = () => {
       {/* Category */}
       <div>
         <label className="block text-sm font-medium mb-2">Category</label>
-        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+        <Select value={selectedCategory || "all"} onValueChange={(val) => setSelectedCategory(val === "all" ? "" : val)}>
           <SelectTrigger>
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Categories</SelectItem>
+            <SelectItem value="all">All Categories</SelectItem>
             {categories.map((cat) => (
               <SelectItem key={cat.id} value={cat.name}>
                 {cat.name} ({cat.count})
@@ -98,12 +98,12 @@ const Products = () => {
       {/* Region */}
       <div>
         <label className="block text-sm font-medium mb-2">Region</label>
-        <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+        <Select value={selectedRegion || "all"} onValueChange={(val) => setSelectedRegion(val === "all" ? "" : val)}>
           <SelectTrigger>
             <SelectValue placeholder="All Regions" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Regions</SelectItem>
+            <SelectItem value="all">All Regions</SelectItem>
             {regions.map((reg) => (
               <SelectItem key={reg.id} value={reg.name}>
                 {reg.name}
@@ -116,12 +116,12 @@ const Products = () => {
       {/* Price Range */}
       <div>
         <label className="block text-sm font-medium mb-2">Price Range</label>
-        <Select value={priceRange} onValueChange={setPriceRange}>
+        <Select value={priceRange || "all"} onValueChange={(val) => setPriceRange(val === "all" ? "" : val)}>
           <SelectTrigger>
             <SelectValue placeholder="Any Price" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Any Price</SelectItem>
+            <SelectItem value="all">Any Price</SelectItem>
             <SelectItem value="0-2000">Under ₹2,000</SelectItem>
             <SelectItem value="2000-5000">₹2,000 - ₹5,000</SelectItem>
             <SelectItem value="5000-15000">₹5,000 - ₹15,000</SelectItem>
