@@ -1,3 +1,12 @@
+import banarsiSaree from "@/assets/products/banarasi-saree.jpg";
+import chanderiDupatta from "@/assets/products/chanderi-dupatta.jpg";
+import ikatStole from "@/assets/products/ikat-stole.jpg";
+import kanchipuramSaree from "@/assets/products/kanchipuram-saree.jpg";
+import khadiKurta from "@/assets/products/khadi-kurta.jpg";
+import pashminaShawl from "@/assets/products/pashmina-shawl.jpg";
+import pochampallySaree from "@/assets/products/pochampally-saree.jpg";
+import jamdaniSaree from "@/assets/products/jamdani-saree.jpg";
+
 export interface Product {
   id: string;
   name: string;
@@ -24,7 +33,7 @@ export const products: Product[] = [
     description: "Exquisite handwoven Banarasi silk saree with intricate gold zari work. Each piece takes over 15 days to complete by master weavers.",
     price: 15999,
     originalPrice: 19999,
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&h=1000&fit=crop",
+    image: banarsiSaree,
     category: "Sarees",
     region: "Varanasi",
     artisanId: "a1",
@@ -40,7 +49,7 @@ export const products: Product[] = [
     name: "Chanderi Cotton Dupatta",
     description: "Lightweight Chanderi cotton dupatta with traditional butis. Perfect for both casual and festive occasions.",
     price: 2499,
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop",
+    image: chanderiDupatta,
     category: "Dupattas",
     region: "Chanderi",
     artisanId: "a2",
@@ -56,7 +65,7 @@ export const products: Product[] = [
     name: "Ikat Handloom Stole",
     description: "Handwoven Ikat stole with geometric patterns. Each pattern is unique, created through the ancient resist-dyeing technique.",
     price: 1899,
-    image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=1000&fit=crop",
+    image: ikatStole,
     category: "Stoles",
     region: "Odisha",
     artisanId: "a3",
@@ -73,7 +82,7 @@ export const products: Product[] = [
     description: "Classic Kanchipuram silk saree with temple border design. A timeless piece handcrafted by third-generation weavers.",
     price: 24999,
     originalPrice: 29999,
-    image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=800&h=1000&fit=crop",
+    image: kanchipuramSaree,
     category: "Sarees",
     region: "Kanchipuram",
     artisanId: "a4",
@@ -89,7 +98,7 @@ export const products: Product[] = [
     name: "Khadi Cotton Kurta",
     description: "Handspun and handwoven khadi cotton kurta. Breathable and perfect for everyday wear.",
     price: 1599,
-    image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=1000&fit=crop",
+    image: khadiKurta,
     category: "Apparel",
     region: "Gujarat",
     artisanId: "a5",
@@ -105,7 +114,7 @@ export const products: Product[] = [
     name: "Pashmina Shawl",
     description: "Authentic Kashmiri Pashmina shawl with intricate sozni embroidery. Each piece is a work of art taking months to complete.",
     price: 45999,
-    image: "https://images.unsplash.com/photo-1601762603339-fd61e28b698a?w=800&h=1000&fit=crop",
+    image: pashminaShawl,
     category: "Shawls",
     region: "Kashmir",
     artisanId: "a6",
@@ -121,7 +130,7 @@ export const products: Product[] = [
     name: "Pochampally Ikat Saree",
     description: "Vibrant Pochampally Ikat saree with double-ikat technique. A GI-tagged product from Telangana.",
     price: 8999,
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&h=1000&fit=crop",
+    image: pochampallySaree,
     category: "Sarees",
     region: "Telangana",
     artisanId: "a7",
@@ -138,7 +147,7 @@ export const products: Product[] = [
     description: "Delicate Jamdani cotton saree with floral motifs woven on the loom. UNESCO-recognized heritage craft.",
     price: 12999,
     originalPrice: 15999,
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop",
+    image: jamdaniSaree,
     category: "Sarees",
     region: "West Bengal",
     artisanId: "a8",
