@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,9 +7,12 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 import { Eye, EyeOff, Mail, Lock, User, MapPin } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Register = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { signUp, user } = useAuth();
   const defaultRole = searchParams.get("role") || "customer";
 
   const [formData, setFormData] = useState({
@@ -23,6 +26,13 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -31,9 +41,30 @@ const Register = () => {
       return;
     }
 
+    if (formData.password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    toast.info("Registration will be enabled once the backend is connected.");
+    
+    const { error } = await signUp(formData.email, formData.password, {
+      name: formData.name,
+      location: formData.region || undefined
+    });
+
+    if (error) {
+      if (error.message.includes("already registered")) {
+        toast.error("This email is already registered. Please sign in instead.");
+      } else {
+        toast.error(error.message);
+      }
+      setIsLoading(false);
+      return;
+    }
+
+    toast.success("Account created successfully! Welcome to Heritage Handloom.");
+    navigate("/");
     setIsLoading(false);
   };
 
