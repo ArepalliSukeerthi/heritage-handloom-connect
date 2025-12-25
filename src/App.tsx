@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { CartProvider } from "@/contexts/CartContext";
 import { WishlistProvider } from "@/contexts/WishlistContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -26,8 +27,9 @@ const queryClient = new QueryClient();
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <WishlistProvider>
+      <AuthProvider>
+        <CartProvider>
+          <WishlistProvider>
           <TooltipProvider>
             <Toaster />
             <Sonner />
@@ -52,8 +54,9 @@ const App = () => (
               </div>
             </BrowserRouter>
           </TooltipProvider>
-        </WishlistProvider>
-      </CartProvider>
+          </WishlistProvider>
+        </CartProvider>
+      </AuthProvider>
     </QueryClientProvider>
   </HelmetProvider>
 );
