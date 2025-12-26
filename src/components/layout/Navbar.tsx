@@ -15,6 +15,7 @@ const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/products", label: "Products" },
     { href: "/artisans", label: "Artisans" },
+    { href: "/handloom-sites", label: "Handloom Sites" },
     { href: "/about", label: "Our Story" },
   ];
 
@@ -54,9 +55,11 @@ const Navbar = () => {
           <Button variant="ghost" size="icon" className="hidden sm:flex">
             <Search className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="icon" className="hidden sm:flex">
-            <Heart className="h-5 w-5" />
-          </Button>
+          <Link to="/wishlist">
+            <Button variant="ghost" size="icon" className="hidden sm:flex">
+              <Heart className="h-5 w-5" />
+            </Button>
+          </Link>
           <Link to="/cart">
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="h-5 w-5" />

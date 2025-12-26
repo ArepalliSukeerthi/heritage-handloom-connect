@@ -20,6 +20,8 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
+import Wishlist from "./pages/Wishlist";
+import HandloomSites from "./pages/HandloomSites";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +49,8 @@ const App = () => (
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/wishlist" element={<Wishlist />} />
+                    <Route path="/handloom-sites" element={<HandloomSites />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </div>
