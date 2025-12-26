@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Send, MapPin, Phone, Mail, User } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const Newsletter = () => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,6 +16,38 @@ const Newsletter = () => {
     location: "",
     message: "",
   });
+
+  // Pre-fill form with user's profile data when logged in
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (user) {
+        // Set email from auth user
+        setFormData(prev => ({
+          ...prev,
+          email: user.email || "",
+          name: user.user_metadata?.name || "",
+        }));
+
+        // Fetch additional profile data
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("name, phone, location")
+          .eq("user_id", user.id)
+          .single();
+
+        if (profile) {
+          setFormData(prev => ({
+            ...prev,
+            name: profile.name || prev.name,
+            phone: profile.phone || "",
+            location: profile.location || "",
+          }));
+        }
+      }
+    };
+
+    fetchProfile();
+  }, [user]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -23,7 +58,7 @@ const Newsletter = () => {
     e.preventDefault();
     if (formData.name && formData.email && formData.phone && formData.location) {
       toast.success("Thank you for reaching out! We'll get back to you soon.");
-      setFormData({ name: "", email: "", phone: "", location: "", message: "" });
+      setFormData(prev => ({ ...prev, message: "" }));
     }
   };
 
