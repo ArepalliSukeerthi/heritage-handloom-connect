@@ -1,14 +1,24 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, ShoppingCart, User, Search, Heart } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Menu, ShoppingCart, User, Search, Heart, LogOut } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { items } = useCart();
+  const { user, signOut } = useAuth();
   const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   const navLinks = [
@@ -20,6 +30,13 @@ const Navbar = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
+
+  const userName = user?.user_metadata?.name || user?.email?.split("@")[0] || "User";
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -70,12 +87,48 @@ const Navbar = () => {
               )}
             </Button>
           </Link>
-          <Link to="/login" className="hidden sm:block">
-            <Button variant="outline-heritage" size="sm">
-              <User className="h-4 w-4 mr-2" />
-              Sign In
-            </Button>
-          </Link>
+
+          {/* Auth State */}
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild className="hidden sm:flex">
+                <Button variant="outline-heritage" size="sm">
+                  <User className="h-4 w-4 mr-2" />
+                  {userName}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem className="text-muted-foreground text-sm">
+                  {user.email}
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/wishlist" className="cursor-pointer">
+                    <Heart className="h-4 w-4 mr-2" />
+                    My Wishlist
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/cart" className="cursor-pointer">
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    My Cart
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut} className="text-destructive cursor-pointer">
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link to="/login" className="hidden sm:block">
+              <Button variant="outline-heritage" size="sm">
+                <User className="h-4 w-4 mr-2" />
+                Sign In
+              </Button>
+            </Link>
+          )}
 
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -99,16 +152,38 @@ const Navbar = () => {
                   </Link>
                 ))}
                 <hr className="my-4 border-border" />
-                <Link to="/login" onClick={() => setIsOpen(false)}>
-                  <Button variant="heritage" className="w-full">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/register" onClick={() => setIsOpen(false)}>
-                  <Button variant="outline-indigo" className="w-full">
-                    Create Account
-                  </Button>
-                </Link>
+                {user ? (
+                  <>
+                    <div className="px-2 py-1">
+                      <p className="font-medium text-foreground">{userName}</p>
+                      <p className="text-sm text-muted-foreground">{user.email}</p>
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        handleSignOut();
+                        setIsOpen(false);
+                      }}
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login" onClick={() => setIsOpen(false)}>
+                      <Button variant="heritage" className="w-full">
+                        Sign In
+                      </Button>
+                    </Link>
+                    <Link to="/register" onClick={() => setIsOpen(false)}>
+                      <Button variant="outline-indigo" className="w-full">
+                        Create Account
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </nav>
             </SheetContent>
           </Sheet>
