@@ -2,53 +2,46 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**URL**: https://heritage-handloom-connect.lovable.app
 
-## How can I edit this code?
+🧵 About Heritage Handloom
 
-There are several ways of editing your application.
+Heritage Handloom is an initiative to preserve and promote India’s rich weaving culture by directly connecting traditional artisans with customers.
+Handloom weaving is not just a craft — it is a legacy passed through generations, representing our history, culture, and identity.
+However, many skilled weavers struggle due to lack of digital market presence and middlemen who reduce their earnings.
 
-**Use Lovable**
+This platform aims to empower artisans by providing them an online marketplace where they can showcase their handmade products.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+🌿 Why Heritage Handloom?
 
-Changes made via Lovable will be committed automatically to this repo.
+To support rural weavers and their families
 
-**Use your preferred IDE**
+To preserve traditional weaving techniques
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+To provide artisans a platform without middlemen
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+To increase awareness about sustainable handmade textiles
 
-Follow these steps:
+To promote "Make in India" & eco-friendly craftsmanship
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Our Mission
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+✨ To bring India’s traditional craftsmanship to the global market
+✨ To improve livelihood of artisans through digital access
+✨ To keep our cultural heritage alive for future generations
 
-# Step 3: Install the necessary dependencies.
-npm i
+Our Vision
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+🧶 A future where every artisan is digitally visible
+🧶 Handloom products reach customers worldwide
+🧶 Indian craftsmanship gains global recognition
 
-**Edit a file directly in GitHub**
+Impact
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+✔ Fair pricing for weavers
+✔ Better income opportunities
+✔ Sustainable & eco-friendly shopping
+✔ Preservation of cultural heritage
 
 ## What technologies are used for this project?
 
@@ -60,14 +53,3 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
